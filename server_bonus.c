@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:58:27 by rmakoni           #+#    #+#             */
-/*   Updated: 2024/12/02 12:31:32 by rmakoni          ###   ########.fr       */
+/*   Updated: 2024/12/02 14:32:03 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	sig_error(void)
 {
@@ -22,9 +22,10 @@ void	decode_sig(int sig, siginfo_t *info, void *context)
 {
 	static char	byte = 0;
 	static int	count = 0;
+	pid_t		client_pid;
 
 	(void)context;
-	(void)info;
+	client_pid = info->si_pid;
 	if (sig == SIGUSR1)
 		byte = (byte << 1) | 0;
 	else
@@ -34,7 +35,10 @@ void	decode_sig(int sig, siginfo_t *info, void *context)
 	{
 		write(1, &byte, 1);
 		if (byte == '\0')
+		{
 			ft_printf("\n");
+			kill(client_pid, SIGUSR1);
+		}
 		count = 0;
 		byte = 0;
 	}

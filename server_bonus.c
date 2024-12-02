@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:58:27 by rmakoni           #+#    #+#             */
-/*   Updated: 2024/12/02 14:32:03 by rmakoni          ###   ########.fr       */
+/*   Updated: 2024/12/02 17:44:56 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	decode_sig(int sig, siginfo_t *info, void *context)
 		if (byte == '\0')
 		{
 			ft_printf("\n");
+			usleep(150);
 			kill(client_pid, SIGUSR1);
 		}
 		count = 0;

@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 11:59:44 by rmakoni           #+#    #+#             */
-/*   Updated: 2024/12/02 13:47:56 by rmakoni          ###   ########.fr       */
+/*   Updated: 2024/12/02 17:41:48 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	send_byte(pid_t pid, char c)
 	i = 8;
 	while (i--)
 	{
+		usleep(200);
 		bit = (c >> i) & 1;
 		if (bit == 0)
 			signal = SIGUSR1;
@@ -31,7 +32,6 @@ void	send_byte(pid_t pid, char c)
 			ft_printf("An error occured sending the signal!\n");
 			exit(EXIT_FAILURE);
 		}
-		usleep(100);
 	}
 }
 

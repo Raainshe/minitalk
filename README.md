@@ -1,6 +1,4 @@
-Here's the entire markdown content in one block:
 
-```markdown
 # minitalk
 
 ## Overview

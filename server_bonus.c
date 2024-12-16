@@ -18,10 +18,21 @@ void	sig_error(void)
 	exit(EXIT_FAILURE);
 }
 
+void	print_msg(char message[262144], int *message_index, pid_t client_pid)
+{
+	message[*message_index] = '\0';
+	*message_index = 0;
+	ft_printf("%s\n", message);
+	usleep(150);
+	kill(client_pid, SIGUSR1);
+}
+
 void	decode_sig(int sig, siginfo_t *info, void *context)
 {
 	static char	byte = 0;
 	static int	count = 0;
+	static int	message_index = 0;
+	static char	message[262144];
 	pid_t		client_pid;
 
 	(void)context;
@@ -33,13 +44,10 @@ void	decode_sig(int sig, siginfo_t *info, void *context)
 	count++;
 	if (count == 8)
 	{
-		write(1, &byte, 1);
+		message[message_index] = byte;
+		message_index++;
 		if (byte == '\0')
-		{
-			ft_printf("\n");
-			usleep(150);
-			kill(client_pid, SIGUSR1);
-		}
+			print_msg(message, &message_index, client_pid);
 		count = 0;
 		byte = 0;
 	}

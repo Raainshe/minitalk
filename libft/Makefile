@@ -60,7 +60,8 @@ SRC_FILES = ft_atoi.c \
 			ft_putstr_fdp.c\
 			ft_toupperp.c\
 			ft_print_unsigned.c\
-			ft_get_address.c
+			ft_get_address.c\
+            ft_str_is_numeric.c
 
 # Add full paths for source and object files
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

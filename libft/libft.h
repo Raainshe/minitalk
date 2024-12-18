@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 13:05:55 by rmakoni           #+#    #+#             */
-/*   Updated: 2024/11/27 14:49:05 by rmakoni          ###   ########.fr       */
+/*   Updated: 2024/12/17 12:43:25 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int					ft_tolower(int c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_atoi(const char *str);
+int					ft_str_is_numeric(char *str);
 
 /* SIZE_T Return Functions */
 size_t				ft_strlen(const char *c);
